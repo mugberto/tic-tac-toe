@@ -21,5 +21,19 @@ The winner is the one who aligns three of his symbols
 either horizontally, vertically or on the diagonal\n'
 
 puts "Press 'Enter' to continue"
-gets
-system('clear')
+gets # Wait
+system('clear') # Refresh the terminal
+
+puts "\n"
+puts 'TIC TAC TOE'
+puts '-----------'
+puts "\n"
+
+puts "Enter the first player's name (default: Player A)"
+player_one_name = gets.chomp
+player_one_symbol = 'X'
+
+puts "Enter the second player's name (default: Player B)"
+player_two_name = gets.chomp
+player_two_symbol = 'O'
+system('clear') # Refresh the terminal
