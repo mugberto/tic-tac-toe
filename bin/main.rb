@@ -42,9 +42,15 @@ player_two_name = gets.chomp
 player_two_symbol = 'O'
 system('clear') # Refresh the terminal
 
+# Function definition of a wrong move handler
+def not_valid_move?(num)
+  # returns true the selected number is already was already selected or is not on the board
+end
+
 # Here start a loop in which player's turns are repeated until a win or a draw occurs
 
-# The code below displays the board and asks the Player A to input a number corresponding to the cell they want to mark
+# Player A turn: The code below displays the board and asks the Player A
+# to input a number corresponding to the cell they want to mark
 puts "\n"
 puts 'TIC TAC TOE'
 puts '-----------'
@@ -62,7 +68,12 @@ k = 1
 end
 
 puts "\nIt's your turn #{player_one_name}, choose a cell number"
-gets.chomp
+move = gets.chomp
+
+if not_valid_move?(move)
+  puts 'Invalid move'
+  # Repeat the Player A turn
+end
 
 system('clear') # Refresh the terminal
 
@@ -84,13 +95,18 @@ k = 1
 end
 
 puts "\nIt's your turn #{player_two_name}, choose a cell number"
-gets.chomp
+move = gets.chomp
+
+if not_valid_move?(move)
+  puts 'Invalid move'
+  # Repeat the Player A turn
+end
 
 system('clear') # Refresh the terminal
 
 # End of the loop
 
-# If the loop break was due to a win
+# If the loop break is due to a win
 
 # The code below diplays the board and the winner after a winning move
 puts "\n"
