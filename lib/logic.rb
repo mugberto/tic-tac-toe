@@ -1,3 +1,11 @@
+module TicTacToe
+  TITLE = "\nTIC TAC TOE\n-----------\n".freeze
+  DESCRIPTION = "\nIn this game, two players play in turns.
+  Each player chooses a number in the checkboard
+  The winner is the one who aligns three of his symbols
+  either horizontally, vertically or on the diagonal\n".freeze
+end
+
 class Board
   def initialize
     @cell = {}
@@ -43,9 +51,30 @@ class Board
   end
 end
 
+class Player
+  @@player = 'Player A'
+  @@symbol = 'X'
+  attr_accessor :name, :symbol
+  def initialize(name = @@player, symbol = @@symbol)
+    self.name = name
+    self.symbol = symbol
+    @@player = 'Player B'
+    @@symbol = 'O'
+  end
+end
+
+player_one = Player.new
+player_two = Player.new
+
+puts player_one.name
+puts player_two.name
+
 board = Board.new
-board.display(4, 'X')
-board.display(5, 'O')
-board.display(9, 'X')
-board.display(7, 'O')
+board.display(4, player_one.symbol)
+board.display(5, player_two.symbol)
+board.display(9, player_one.symbol)
+board.display(7, player_two.symbol)
+board.display(6, player_one.symbol)
+system('clear')
+board.display(3, player_two.symbol)
 p board.moves('O')
