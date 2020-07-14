@@ -4,6 +4,7 @@ module TicTacToe
   Each player chooses a number in the checkboard
   The winner is the one who aligns three of his symbols
   either horizontally, vertically or on the diagonal\n".freeze
+  WINING_SEQUENCES = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7], [1, 4, 7], [2, 5, 8], [3, 6, 9]].freeze
 end
 
 class Board
@@ -21,7 +22,7 @@ class Board
       (1..3).each do |j|
         if @cell.key?(@k + 1)
           print j == 1 ? "| #{@cell[@k += 1]} |" : " #{@cell[@k += 1]} |"
-          move_keeper([j, i], @cell[@k])
+          move_keeper(@k, @cell[@k])
         else
           print j == 1 ? "| #{@k += 1} |" : " #{@k += 1} |"
         end
@@ -42,11 +43,11 @@ class Board
   private
 
   # Records xy positions of Xs or Os after every move in arrays
-  def move_keeper(coord, sym)
+  def move_keeper(pos, sym)
     if sym == 'X'
-      @x << coord
+      @x << pos
     elsif sym == 'O'
-      @o << coord
+      @o << pos
     end
   end
 end
@@ -77,4 +78,4 @@ board.display(7, player_two.symbol)
 board.display(6, player_one.symbol)
 system('clear')
 board.display(3, player_two.symbol)
-p board.moves('O')
+p board.moves('X')
