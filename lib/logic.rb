@@ -71,8 +71,8 @@ class Player
   @@player = 'Player A'
   @@sym = 'X'
   attr_accessor :name, :symbol
-  def initialize(name = @@player, sym = @@sym)
-    self.name = name
+  def initialize(name, sym = @@sym)
+    self.name = name == '' ? @@player : name
     self.symbol = sym
     @@players[sym] = name
     @@player = 'Player B'
@@ -80,7 +80,7 @@ class Player
   end
 
   def play
-    puts "It's your turn #{@name}, Mark a cell by picking a number" 
+    puts "It's your turn #{@name}, Mark a cell by picking a number"
     ok = false
     until ok
       move = gets.chomp
@@ -100,22 +100,22 @@ class Player
 end
 
 
-player_one = Player.new
-player_two = Player.new
+# player_one = Player.new
+# player_two = Player.new
 
-# p player_two.play
+# # p player_two.play
 
-# puts player_one.symbol
-# puts player_two.symbol
+# # puts player_one.symbol
+# # puts player_two.symbol
 
-board = Board.new
-board.display
-board.display([4, player_one.symbol])
-board.display([5, player_two.symbol])
-board.display([9, player_one.symbol])
-board.display([7, player_two.symbol])
-board.display([6, player_one.symbol])
-board.display
-p board.win?
-p board.win_sym
-p Player.winner(board.win_sym)
+# board = Board.new
+# board.display
+# board.display([4, player_one.symbol])
+# board.display([5, player_two.symbol])
+# board.display([9, player_one.symbol])
+# board.display([7, player_two.symbol])
+# board.display([6, player_one.symbol])
+# board.display
+# p board.win?
+# p board.win_sym
+# p Player.winner(board.win_sym)
