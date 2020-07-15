@@ -4,15 +4,26 @@ module TicTacToe
 in the checkboard\nThe winner is the one who aligns three of his symbols\neither horizontally, \
 vertically or on the diagonal\n".freeze
 
-  def reset_terminal
-    system('clear')
+  def display_winner(sym)
     puts TITLE
+    board.display
+    puts "\n#{Player.winner(sym)} is the winner! Congraturations.\n"
+    puts "Press 'Enter' to exit"
+    gets
   end
 
+  def display_draw()
+    puts TITLE
+    board.display
+    puts "\nNo possible winning move left! The game is a draw.\n"
+    puts "Press 'Enter' to exit"
+    gets
+  end
 end
 
 class Board
   WINING_SEQUENCES = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7], [1, 4, 7], [2, 5, 8], [3, 6, 9]].freeze
+  attr_reader :cell
   def initialize
     @cell = {}
   end
@@ -50,6 +61,10 @@ class Board
     bool
   end
 
+  def draw?
+    @cell.count == 9
+  end
+
   def win_sym
     @cell.values.last
   end
@@ -79,19 +94,22 @@ class Player
     @@sym = 'O'
   end
 
-  def play
-    puts "It's your turn #{@name}, Mark a cell by picking a number"
+  def play(board)
+    puts "It's your turn '#{@name}', Mark a cell by picking a number"
     ok = false
     until ok
       move = gets.chomp
       if /[1-9]/ =~ move && move.size == 1
-        ok = true
+        if board.cell.key?(move.to_i)
+          puts 'The cell you chose is already taken. Please enter another number.'
+        else
+          ok = true
+        end
       else
         puts 'You entered the wrong number. Please enter a single digit, from 1 to 9'
       end
     end
-
-    [move, @symb]
+    [move.to_i, @symbol]
   end
 
   def self.winner(win_sym)
