@@ -67,22 +67,28 @@ class Board
 end
 
 class Player
+  @@players = {}
   @@player = 'Player A'
-  @@symbol = 'X'
+  @@sym = 'X'
   attr_accessor :name, :symbol
-  def initialize(name = @@player, symbol = @@symbol)
+  def initialize(name = @@player, sym = @@sym)
     self.name = name
-    self.symbol = symbol
+    self.symbol = sym
+    @@players[sym] = name
     @@player = 'Player B'
-    @@symbol = 'O'
+    @@sym = 'O'
+  end
+
+  def self.winner(win_sym)
+    @@players[win_sym]
   end
 end
 
 player_one = Player.new
 player_two = Player.new
 
-puts player_one.name
-puts player_two.name
+puts player_one.symbol
+puts player_two.symbol
 
 board = Board.new
 board.display(4, player_one.symbol)
@@ -90,7 +96,7 @@ board.display(5, player_two.symbol)
 board.display(9, player_one.symbol)
 board.display(7, player_two.symbol)
 board.display(6, player_one.symbol)
-system('clear')
 board.display(3, player_two.symbol)
 p board.win?
 p board.win_sym
+p Player.winner(board.win_sym)
