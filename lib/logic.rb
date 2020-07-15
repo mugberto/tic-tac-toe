@@ -19,12 +19,12 @@ class Board
   end
 
   def display(arg = nil)
-    @cell[arg[0]] = arg[1]
+    @cell[arg[0]] = arg[1] unless arg.nil?
     @k = 0
     @x = []
     @o = []
     (1..3).each do |i|
-      puts '-' * 13 if i.zero?
+      puts '-' * 13 if i == 1
       (1..3).each do |j|
         if @cell.key?(@k + 1)
           print j == 1 ? "| #{@cell[@k += 1]} |" : " #{@cell[@k += 1]} |"
@@ -99,21 +99,22 @@ class Player
 end
 
 
-player_one = Player.new
-player_two = Player.new
+# player_one = Player.new
+# player_two = Player.new
 
-p player_two.play
+# p player_two.play
 
 # puts player_one.symbol
 # puts player_two.symbol
 
 # board = Board.new
-# board.display(4, player_one.symbol)
-# board.display(5, player_two.symbol)
-# board.display(9, player_one.symbol)
-# board.display(7, player_two.symbol)
-# board.display(6, player_one.symbol)
-# board.display(3, player_two.symbol)
+# board.display
+# board.display([4, player_one.symbol])
+# board.display([5, player_two.symbol])
+# board.display([9, player_one.symbol])
+# board.display([7, player_two.symbol])
+# board.display([6, player_one.symbol])
+# board.display([3, player_two.symbol])
 # p board.win?
 # p board.win_sym
 # p Player.winner(board.win_sym)
