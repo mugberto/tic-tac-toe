@@ -5,9 +5,16 @@ module TicTacToe
   The winner is the one who aligns three of his symbols
   either horizontally, vertically or on the diagonal\n".freeze
   WINING_SEQUENCES = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7], [1, 4, 7], [2, 5, 8], [3, 6, 9]].freeze
+
+  def reset_terminal
+    system('clear')
+    puts TITLE
+  end
+
 end
 
 class Board
+  include TicTacToe
   def initialize
     @cell = {}
   end
@@ -31,6 +38,20 @@ class Board
     end
   end
 
+  def win?
+    bool = false
+    if @cell.values.last == 'X'
+      WINING_SEQUENCES.each do |ary|
+        bool = true if ary.count { |i| @x.include?(i) } == 3
+      end
+    else
+      WINING_SEQUENCES.each do |ary|
+        bool = true if ary.count { |i| @o.include?(i) } == 3
+      end
+    end
+    bool
+  end
+
   # A getter for Xs or Os positions
   def moves(sym)
     if sym == 'X'
@@ -42,7 +63,7 @@ class Board
 
   private
 
-  # Records xy positions of Xs or Os after every move in arrays
+  # Records positions after every player's move in arrays
   def move_keeper(pos, sym)
     if sym == 'X'
       @x << pos
@@ -78,4 +99,4 @@ board.display(7, player_two.symbol)
 board.display(6, player_one.symbol)
 system('clear')
 board.display(3, player_two.symbol)
-p board.moves('X')
+p board.win?
