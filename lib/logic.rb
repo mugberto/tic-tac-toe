@@ -9,6 +9,7 @@ module TicTacToe
     system('clear')
     puts TITLE
   end
+
 end
 
 class Board
@@ -17,8 +18,8 @@ class Board
     @cell = {}
   end
 
-  def display(*args)
-    @cell[args[0]] = args[1]
+  def display(arg = nil)
+    @cell[arg[0]] = arg[1]
     @k = 0
     @x = []
     @o = []
@@ -79,24 +80,40 @@ class Player
     @@sym = 'O'
   end
 
+  def play
+    ok = false
+    until ok
+      move = gets.chomp
+      if /[1-9]/ =~ move && move.size == 1
+        ok = true
+      else
+        puts 'You entered the wrong number. Please enter a single digit, from 1 to 9'
+      end
+    end
+    [move, @symbol]
+  end
+
   def self.winner(win_sym)
     @@players[win_sym]
   end
 end
 
+
 player_one = Player.new
 player_two = Player.new
 
-puts player_one.symbol
-puts player_two.symbol
+p player_two.play
 
-board = Board.new
-board.display(4, player_one.symbol)
-board.display(5, player_two.symbol)
-board.display(9, player_one.symbol)
-board.display(7, player_two.symbol)
-board.display(6, player_one.symbol)
-board.display(3, player_two.symbol)
-p board.win?
-p board.win_sym
-p Player.winner(board.win_sym)
+# puts player_one.symbol
+# puts player_two.symbol
+
+# board = Board.new
+# board.display(4, player_one.symbol)
+# board.display(5, player_two.symbol)
+# board.display(9, player_one.symbol)
+# board.display(7, player_two.symbol)
+# board.display(6, player_one.symbol)
+# board.display(3, player_two.symbol)
+# p board.win?
+# p board.win_sym
+# p Player.winner(board.win_sym)
