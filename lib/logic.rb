@@ -1,9 +1,8 @@
 module TicTacToe
   TITLE = "\nTIC TAC TOE\n-----------\n".freeze
-  DESCRIPTION = "\nIn this game, two players play in turns.
-  Each player chooses a number in the checkboard
-  The winner is the one who aligns three of his symbols
-  either horizontally, vertically or on the diagonal\n".freeze
+  DESCRIPTION = "\nIn this game, two players play in turns.\nEach player chooses a number \
+in the checkboard\nThe winner is the one who aligns three of his symbols\neither horizontally, \
+vertically or on the diagonal\n".freeze
 
   def reset_terminal
     system('clear')
@@ -81,6 +80,7 @@ class Player
   end
 
   def play
+    puts "It's your turn #{@name}, Mark a cell by picking a number" 
     ok = false
     until ok
       move = gets.chomp
@@ -90,7 +90,8 @@ class Player
         puts 'You entered the wrong number. Please enter a single digit, from 1 to 9'
       end
     end
-    [move, @symbol]
+
+    [move, @symb]
   end
 
   def self.winner(win_sym)
@@ -99,22 +100,22 @@ class Player
 end
 
 
-# player_one = Player.new
-# player_two = Player.new
+player_one = Player.new
+player_two = Player.new
 
 # p player_two.play
 
 # puts player_one.symbol
 # puts player_two.symbol
 
-# board = Board.new
-# board.display
-# board.display([4, player_one.symbol])
-# board.display([5, player_two.symbol])
-# board.display([9, player_one.symbol])
-# board.display([7, player_two.symbol])
-# board.display([6, player_one.symbol])
-# board.display([3, player_two.symbol])
-# p board.win?
-# p board.win_sym
-# p Player.winner(board.win_sym)
+board = Board.new
+board.display
+board.display([4, player_one.symbol])
+board.display([5, player_two.symbol])
+board.display([9, player_one.symbol])
+board.display([7, player_two.symbol])
+board.display([6, player_one.symbol])
+board.display
+p board.win?
+p board.win_sym
+p Player.winner(board.win_sym)
