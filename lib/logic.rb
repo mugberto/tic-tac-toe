@@ -4,17 +4,15 @@ module TicTacToe
   Each player chooses a number in the checkboard
   The winner is the one who aligns three of his symbols
   either horizontally, vertically or on the diagonal\n".freeze
-  WINING_SEQUENCES = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7], [1, 4, 7], [2, 5, 8], [3, 6, 9]].freeze
 
   def reset_terminal
     system('clear')
     puts TITLE
   end
-
 end
 
 class Board
-  include TicTacToe
+  WINING_SEQUENCES = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 5, 9], [3, 5, 7], [1, 4, 7], [2, 5, 8], [3, 6, 9]].freeze
   def initialize
     @cell = {}
   end
@@ -50,6 +48,10 @@ class Board
       end
     end
     bool
+  end
+
+  def win_sym
+    @cell.values.last
   end
 
   # A getter for Xs or Os positions
@@ -100,3 +102,4 @@ board.display(6, player_one.symbol)
 system('clear')
 board.display(3, player_two.symbol)
 p board.win?
+p board.win_sym
