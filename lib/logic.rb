@@ -54,15 +54,6 @@ class Board
     @cell.values.last
   end
 
-  # A getter for Xs or Os positions
-  def moves(sym)
-    if sym == 'X'
-      @x
-    else
-      @o
-    end
-  end
-
   private
 
   # Records positions after every player's move in arrays
