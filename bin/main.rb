@@ -6,7 +6,7 @@ require_relative '../lib/tictactoe'
 
 board = Board.new
 
-system('clear') # Reset the terminal
+system('clear')
 
 puts TicTacToe::TITLE
 
@@ -15,8 +15,8 @@ puts board.display
 puts TicTacToe::DESCRIPTION
 
 puts "Press 'Enter' to continue"
-gets # Wait
-system('clear') # Reset the terminal
+gets
+system('clear')
 
 puts TicTacToe::TITLE
 
@@ -26,7 +26,7 @@ player_one = Player.new(gets.chomp)
 puts "Enter the second player's name [default: Player B]"
 player_two = Player.new(gets.chomp)
 
-system('clear') # Reset the terminal
+system('clear')
 
 def accept_move(board)
   ok = false
@@ -55,14 +55,14 @@ loop do
   if board.win?
     puts "\n#{Player.winner(board.win_sym)} is the winner! Congraturations.\n"
     puts "Press 'Enter' to exit"
-    gets # Waiting for the user to press enter
+    gets
     break
   end
 
   if board.draw?
     puts "\nNo possible winning move left! The game is a draw.\n"
     puts "Press 'Enter' to exit"
-    gets # Waiting for the user to press enter
+    gets
     break
   end
 
