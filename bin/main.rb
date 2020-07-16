@@ -53,16 +53,18 @@ loop do
   puts board.display(move)
 
   if board.win?
-    TicTacToe.display_winner(Player.winner(board.win_sym))
+    puts "\n#{Player.winner(board.win_sym)} is the winner! Congraturations.\n"
+    puts "Press 'Enter' to exit"
+    gets # Waiting for the user to press enter
     break
   end
 
   if board.draw?
-    TicTacToe.display_draw
+    puts "\nNo possible winning move left! The game is a draw.\n"
+    puts "Press 'Enter' to exit"
+    gets # Waiting for the user to press enter
     break
   end
-
-  # move = i.even? ? player_one.play(board) : player_two.play(board)
 
   if i.even?
     puts "It's your turn '#{player_one.name}', Mark a cell by picking a number"
