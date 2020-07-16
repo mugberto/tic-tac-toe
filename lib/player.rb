@@ -12,22 +12,8 @@ class Player
     @@sym = 'O'
   end
 
-  def play(board)
-    puts "It's your turn '#{@name}', Mark a cell by picking a number"
-    ok = false
-    until ok
-      move = gets.chomp
-      if /[1-9]/ =~ move && move.size == 1
-        if board.cell.key?(move.to_i)
-          puts 'The cell you chose is already taken. Please enter another number.'
-        else
-          ok = true
-        end
-      else
-        puts 'You entered the wrong number. Please enter a single digit, from 1 to 9'
-      end
-    end
-    [move.to_i, @symbol]
+  def play(move)
+    [move, @symbol]
   end
 
   def self.winner(win_sym)

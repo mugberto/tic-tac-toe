@@ -28,6 +28,23 @@ player_two = Player.new(gets.chomp)
 
 system('clear') # Reset the terminal
 
+def accept_move(board)
+  ok = false
+  until ok
+    move = gets.chomp
+    if /[1-9]/ =~ move && move.size == 1
+      if board.cell.key?(move.to_i)
+        puts 'The cell you chose is already taken. Please enter another number.'
+      else
+        ok = true
+      end
+    else
+      puts 'You entered the wrong number. Please enter a single digit, from 1 to 9'
+    end
+  end
+  move.to_i
+end
+
 i = 0
 move = nil
 loop do
@@ -45,7 +62,16 @@ loop do
     break
   end
 
-  move = i.even? ? player_one.play(board) : player_two.play(board)
+  # move = i.even? ? player_one.play(board) : player_two.play(board)
+
+  if i.even?
+    puts "It's your turn '#{player_one.name}', Mark a cell by picking a number"
+    move = player_one.play(accept_move(board))
+  else
+    puts "It's your turn '#{player_two.name}', Mark a cell by picking a number"
+    move = player_two.play(accept_move(board))
+  end
+
   i += 1
   system('clear')
 end
