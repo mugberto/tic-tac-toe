@@ -10,7 +10,7 @@ system('clear') # Reset the terminal
 
 puts TicTacToe::TITLE
 
-board.display
+puts board.display
 
 puts TicTacToe::DESCRIPTION
 
@@ -50,7 +50,7 @@ move = nil
 loop do
   puts TicTacToe::TITLE
   puts "\n#{player_one.name}(#{player_one.symbol})  VS  #{player_two.name}(#{player_two.symbol})\n"
-  board.display(move)
+  puts board.display(move)
 
   if board.win?
     TicTacToe.display_winner(Player.winner(board.win_sym))

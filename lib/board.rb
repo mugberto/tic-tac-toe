@@ -10,18 +10,21 @@ class Board
     @k = 0
     @x = []
     @o = []
+    board = ''
     (1..3).each do |i|
-      puts '-' * 13 if i == 1
+      board << '-' * 13 if i == 1
       (1..3).each do |j|
         if @cell.key?(@k + 1)
-          print j == 1 ? "| #{@cell[@k += 1]} |" : " #{@cell[@k += 1]} |"
+          board << (j == 1 ? "\n| #{@cell[@k += 1]} |" : " #{@cell[@k += 1]} |")
           move_keeper(@k, @cell[@k])
         else
-          print j == 1 ? "| #{@k += 1} |" : " #{@k += 1} |"
+          # board << "\n"
+          board << (j == 1 ? "\n| #{@k += 1} |" : " #{@k += 1} |")
         end
       end
-      puts "\n" + '-' * 13
+      board << "\n" + '-' * 13
     end
+    board
   end
 
   def win?
