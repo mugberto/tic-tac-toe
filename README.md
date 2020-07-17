@@ -2,26 +2,33 @@
 
 In this project we build a Tic Tac Toe game app with Ruby. The game is played in the Terminal.
 
-## Game Description
-
-The Tic-tac-toe game is played by two people.
-Up on starting, the players enter their names and each gets assigned a symbol.
-The playground is a board consisting of a 3x3 grid with numbered cells
-
-The players take turns to enter  a number corresponding to the cell they want
-to mark. The goal is to mark three aligned cells with one's symbol. The alignment
-can be horizontal, vertical, or diagonal. The first player to achieve this goal is the 
-winner. When none of the players is able to align his three marks. The game ends in a draw 
-
 ## Setup
-
-#### To play this game:
 
 - Make sure you have Ruby 2.6 or +
 - Clone or download this repo
 - Locate the repo in your terminal
 - Run bin/main.rb
 - Then, enjoy the game
+
+## Game Description
+
+![Board](board.png)
+
+This Tic-tac-toe game is played by two people.The playground is a board 
+consisting of a 3x3 grid with numbered cells
+
+The players take turns to enter a number corresponding to the cell they want
+to mark. The goal is to mark three aligned cells with one's symbol. The alignment
+can be horizontal, vertical, or diagonal. The first player to achieve this goal is the 
+winner. When none of the players is able to align his three marks. The game ends in a draw 
+
+## Instructions
+
+- Upon starting, read a short description of the game. Press 'Enter' to continue
+- Next, Enter the players'names.
+- Then players are given turns to enter a number corresponding to the cell they want to mark
+- The above step is repeated until one player wins or the game ends in a draw
+- Press 'Enter' to exit once the game result is displayed
 
 ## Technologies
 
